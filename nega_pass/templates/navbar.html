@@ -1,0 +1,44 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"> <!-- Use mr-auto to push items to the left -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto"> <!-- Use ml-auto to push items to the right -->
+            {% if request.session.user_id %}
+                <li class="nav-item">
+                    <span class="navbar-text">
+                        Hi, {{ request.session.username }}
+                    </span>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-link nav-link" id="logoutBtn">Log Out</button>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Log In</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Show confirmation dialog
+            var confirmation = confirm('Are you sure you want to log out?');
+    
+            // If user confirms, perform logout action
+            if (confirmation) {
+                window.location.href = '/logout_2';
+            }
+        });
+    </script>
+    
+</nav>
